@@ -15,23 +15,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tasks", "Tasks", "{D498BDE2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Events", "Events", "{3EE555A4-29BC-45C5-883C-1E70C1F12D42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Shared.Infrastructure", "DM.Shared.Infrastructure\DM.Shared.Infrastructure.csproj", "{C81E8FA0-3D75-4DF1-B514-4CF94F1A738F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Shared.Infrastructure", "DM.Shared.Infrastructure\DM.Shared.Infrastructure.csproj", "{C81E8FA0-3D75-4DF1-B514-4CF94F1A738F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Shared.Core", "DM.Shared.Core\DM.Shared.Core.csproj", "{9E2E2AA8-228F-47B5-B9A0-50BA7401524D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Shared.Core", "DM.Shared.Core\DM.Shared.Core.csproj", "{9E2E2AA8-228F-47B5-B9A0-50BA7401524D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Users", "DM.Users\DM.Users.csproj", "{FC95264D-6421-4B23-B3F7-15C3D97E1AC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Module.Users", "DM.Users\DM.Module.Users.csproj", "{FC95264D-6421-4B23-B3F7-15C3D97E1AC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Tasks.Core", "DM.Tasks.Core\DM.Tasks.Core.csproj", "{0755126A-26A7-444C-82DF-CF769741D441}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Tasks.Core", "DM.Tasks.Core\DM.Tasks.Core.csproj", "{0755126A-26A7-444C-82DF-CF769741D441}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Modules.Tasks.Infrastructure", "DM.Tasks.Infrastructure\DM.Modules.Tasks.Infrastructure.csproj", "{9159E848-44C4-4303-A819-48A7AD3B5860}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Modules.Tasks.Infrastructure", "DM.Tasks.Infrastructure\DM.Modules.Tasks.Infrastructure.csproj", "{9159E848-44C4-4303-A819-48A7AD3B5860}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Modules.Tasks", "DM.Modules.Tasks\DM.Modules.Tasks.csproj", "{8B2A09EE-BB09-4427-843B-AB74814BCCAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Modules.Tasks", "DM.Modules.Tasks\DM.Modules.Tasks.csproj", "{8B2A09EE-BB09-4427-843B-AB74814BCCAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Modules.Events", "DM.Modules.Events\DM.Modules.Events.csproj", "{614924BB-BC0F-4868-9D50-D7C72FBC1A4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Modules.Events", "DM.Modules.Events\DM.Modules.Events.csproj", "{614924BB-BC0F-4868-9D50-D7C72FBC1A4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Modules.Events.Core", "DM.Modules.Events.Core\DM.Modules.Events.Core.csproj", "{90325B08-94B1-45BC-A2DE-6B322C989BF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Modules.Events.Core", "DM.Modules.Events.Core\DM.Modules.Events.Core.csproj", "{90325B08-94B1-45BC-A2DE-6B322C989BF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Modules.Events.Infrastructure", "DM.Modules.Events.Infrastructure\DM.Modules.Events.Infrastructure.csproj", "{14BDEFE5-9B07-461C-9F8B-38473DF751AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Modules.Events.Infrastructure", "DM.Modules.Events.Infrastructure\DM.Modules.Events.Infrastructure.csproj", "{14BDEFE5-9B07-461C-9F8B-38473DF751AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
