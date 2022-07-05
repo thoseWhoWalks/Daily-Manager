@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DM.Shared.Infrastructure\DM.Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\DM.Users\DM.Module.Users.csproj" />
   </ItemGroup>
 
 </Project>
