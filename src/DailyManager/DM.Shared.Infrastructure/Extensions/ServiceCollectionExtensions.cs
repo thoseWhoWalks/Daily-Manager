@@ -9,11 +9,23 @@ namespace DM.Shared.Infrastructure.Extensions
         public static IServiceCollection AddSharedInfrastructure(this IServiceCollection services, IConfiguration config)
         {
             services
+                .AddInternalControllerFeatureProvider(config);
+
+            return services;
+        }
+
+        #region Private methods
+
+        public static IServiceCollection AddInternalControllerFeatureProvider(this IServiceCollection services, IConfiguration config)
+        {
+            services
                 .AddControllers()
                 .ConfigureApplicationPartManager(manager
                     => manager.FeatureProviders.Add(new InternalControllerFeatureProvider()));
 
             return services;
         }
+            
+        #endregion
     }
 }
