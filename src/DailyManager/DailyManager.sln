@@ -19,9 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Shared.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Shared.Core", "DM.Shared.Core\DM.Shared.Core.csproj", "{9E2E2AA8-228F-47B5-B9A0-50BA7401524D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Module.Users", "DM.Users\DM.Module.Users.csproj", "{FC95264D-6421-4B23-B3F7-15C3D97E1AC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Modules.Users", "DM.Users\DM.Modules.Users.csproj", "{FC95264D-6421-4B23-B3F7-15C3D97E1AC0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Tasks.Core", "DM.Tasks.Core\DM.Tasks.Core.csproj", "{0755126A-26A7-444C-82DF-CF769741D441}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Modules.Tasks.Core", "DM.Tasks.Core\DM.Modules.Tasks.Core.csproj", "{0755126A-26A7-444C-82DF-CF769741D441}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Modules.Tasks.Infrastructure", "DM.Tasks.Infrastructure\DM.Modules.Tasks.Infrastructure.csproj", "{9159E848-44C4-4303-A819-48A7AD3B5860}"
 EndProject

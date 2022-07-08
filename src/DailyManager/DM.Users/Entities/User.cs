@@ -8,7 +8,7 @@ namespace DM.Module.Users.Entities
         IUpdateableEntity,
         IDeleteableEntity
     {
-        public Guid Id { get; } = new();
+        public Guid Id { get; } = Guid.NewGuid();
 
         public string Login { get; set; } = null!;
         public string HashPassword { get; set; } = null!;
