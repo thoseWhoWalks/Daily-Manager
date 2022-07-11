@@ -16,7 +16,7 @@ namespace DM.Module.Users.Context
 
         public UserDbContext(DbContextOptions<UserDbContext> options) : base(Schema, options)
         {
-
+            Database.EnsureCreated();
         }
     }
 }
