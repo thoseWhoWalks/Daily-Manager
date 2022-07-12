@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EntityFrameworkCore.CommonTools" Version="2.0.2" />
+  </ItemGroup>
+
 </Project>
