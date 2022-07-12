@@ -23,6 +23,7 @@ namespace DM.Module.Users.Extensions
             services
                 .AddDatabase(configuration)
                 .AddServises(configuration)
+                .AddUserContext(configuration)
                 .AddMappings(configuration);
 
             return services;
@@ -44,7 +45,19 @@ namespace DM.Module.Users.Extensions
 
             return services;
         }
-             
+
+        private static IServiceCollection AddUserContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddScoped<IUserContext>(provider => {
+                // TODO: User IAuthenticator.
+                AuthUserModel auth = new AuthUserModel(Guid.Empty);
+
+                return new UserContext(auth);
+            });
+
+            return services;
+        }
+
         public static IServiceCollection AddMappings(this IServiceCollection services, IConfiguration config)
         {
             new MapperRegistrator().FromAssembly(Assembly.GetExecutingAssembly());
