@@ -3,10 +3,10 @@ using DM.Shared.Core.Entities;
 
 namespace DM.Shared.Core.Repositories
 {
-    public interface ICreateable<TEntity> 
+    public interface IDeleteable<TEntity> 
         where TEntity : class, IEntity, IAggregateRoot
     {
-        TEntity Create(TEntity entity);
-        Task<TEntity> CreateAsync(TEntity entity);
+        TEntity Update(TEntity entity);
+        Task<TEntity> UpdateAsync(TEntity entity);
     }
 }
