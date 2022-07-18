@@ -12,7 +12,7 @@ namespace DM.Module.Users.Context
 
         #endregion
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; } = null!;
 
         public UserDbContext(DbContextOptions<UserDbContext> options) : base(Schema, options)
         {
