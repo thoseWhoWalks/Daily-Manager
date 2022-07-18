@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DM.Shared.Application\DM.Shared.Application.csproj" />
     <ProjectReference Include="..\DM.Shared.Core\DM.Shared.Core.csproj" />
     <ProjectReference Include="..\DM.Shared.Infrastructure\DM.Shared.Infrastructure.csproj" />
   </ItemGroup>

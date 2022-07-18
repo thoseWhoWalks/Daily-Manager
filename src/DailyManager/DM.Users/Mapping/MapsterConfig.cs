@@ -1,6 +1,6 @@
 ﻿using DM.Module.Users.Entities;
 using DM.Module.Users.Models;
-using DM.Shared.Infrastructure.Mapping;
+using DM.Shared.Application.Mapping;
 using Mapster;
 
 namespace DM.Module.Users.Mapping
@@ -30,8 +30,6 @@ namespace DM.Module.Users.Mapping
                 .Map(dest => dest.IsDeleted,
                      model => model.IsDeleted);
         }
-
-       
 
         #endregion
     }

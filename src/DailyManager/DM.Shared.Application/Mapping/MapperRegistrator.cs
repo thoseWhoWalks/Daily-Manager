@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace DM.Shared.Infrastructure.Mapping
+namespace DM.Shared.Application.Mapping
 {
     public class MapperRegistrator
     {

@@ -2,7 +2,7 @@
 using DM.Module.Users.Context;
 using DM.Module.Users.Models;
 using DM.Module.Users.Services;
-using DM.Shared.Infrastructure.Mapping;
+using DM.Shared.Application.Mapping;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

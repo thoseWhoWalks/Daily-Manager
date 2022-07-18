@@ -1,4 +1,4 @@
-﻿namespace DM.Shared.Infrastructure.Mapping
+﻿namespace DM.Shared.Application.Mapping
 {
     public interface IMapperConfig
     {
