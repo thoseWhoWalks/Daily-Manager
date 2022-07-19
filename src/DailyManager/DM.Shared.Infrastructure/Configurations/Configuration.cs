@@ -13,6 +13,8 @@ namespace DM.Shared.Infrastructure.Configurations
         protected const int LoginMaxLength = 128;
         protected const int HashMaxLength = 258;
         protected const int SaltMaxLength = 128;
+        protected const int TitleMaxLength = 128;
+        protected const int DescriptionMaxLength = 258;
 
         protected const string DateTypeName = "date";
 
