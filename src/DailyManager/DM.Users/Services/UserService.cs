@@ -137,7 +137,7 @@ namespace DM.Module.Users.Services
 
         #region Private methods
 
-        private void ActionGuardAndThrow(User? user)
+        private static void ActionGuardAndThrow(User? user)
         {
             if (user is null) throw new UserNotFoundException();
             if (user.IsDeleted) throw new UserDeletedException(user.Login);
