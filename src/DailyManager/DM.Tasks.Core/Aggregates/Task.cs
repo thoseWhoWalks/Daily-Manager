@@ -1,4 +1,5 @@
 ﻿using DM.Modules.Tasks.Core.Const;
+using DM.Modules.Tasks.Core.Exceptions.Tasks;
 using DM.Shared.Core.Aggregates;
 using DM.Shared.Core.Entities;
 
@@ -33,18 +34,18 @@ namespace DM.Modules.Tasks.Core.Aggregates
         internal Task(Guid authorId,  Guid listId, string title, string? description, DateTime? executeAt)
         {
             if (authorId == default)
-                throw new ArgumentException(nameof(authorId));
+                throw new CreateTaskWithoutAuthorException();
             AuthorId = authorId;
 
             if (listId == default)
-                throw new ArgumentException(nameof(listId));
+                throw new CreateTaskOutOfListContextException();
             ListId = listId;
 
             if (executeAt.HasValue && executeAt <= DateTime.UtcNow)
-                throw new ArgumentException(nameof(executeAt));
+                throw new CreateTaskWithOverdueExecutionDateException();
             ExecuteAt = executeAt;
 
-            Title = title ?? throw new ArgumentException(nameof(title));
+            Title = title ?? throw new CreateTaskWithoutTitleException();
             Description = description;
         }
         #endregion
@@ -52,18 +53,25 @@ namespace DM.Modules.Tasks.Core.Aggregates
         #region Invariants
         public void Rename(string title)
         {
-            ArgumentNullException.ThrowIfNull(title);
+            if (IsDeleted)
+                throw new TaskDeletedException(Title);
 
-            Title = title;
+            Title = title ?? throw new RenameTaskToEmptyTitleException();
         }
 
         public void ChangeDescription(string description)
         {
+            if (IsDeleted)
+                throw new TaskDeletedException(Title);
+
             Description = description;
         }
 
-        public void ChaneExecutionDate(DateTime? date)
+        public void ChangeExecutionDate(DateTime? date)
         {
+            if (IsDeleted)
+                throw new TaskDeletedException(Title);
+
             if (!date.HasValue && State == TaskStates.Overdue)
                 State = TaskStates.Active;
             if (date > DateTime.UtcNow && State == TaskStates.Overdue)
@@ -76,17 +84,20 @@ namespace DM.Modules.Tasks.Core.Aggregates
 
         public void SetExecutionDate(DateTime date)
         {
+            if (IsDeleted)
+                throw new TaskDeletedException(Title);
+
             if (State != TaskStates.Executed && date <= DateTime.UtcNow)
-                throw new InvalidOperationException();
+                throw new OverdueTaskExecutionDateModifyException();
             ExecuteAt = date;
         }
 
         public void Execute()
         {
             if (IsDeleted)
-                throw new InvalidOperationException();
+                throw new TaskDeletedException(Title);
             if (State == TaskStates.Executed)
-                throw new InvalidOperationException();
+                throw new ExecutedTaskExecutionException();
 
             State = TaskStates.Executed;
             ExecutedAt = DateTime.UtcNow;
@@ -95,7 +106,7 @@ namespace DM.Modules.Tasks.Core.Aggregates
         public void Delete()
         {
             if (IsDeleted)
-                throw new InvalidOperationException();
+                throw new TaskDeletedException(Title);
 
             IsDeleted = true;
             DeletedAt = DateTime.UtcNow;
@@ -104,7 +115,7 @@ namespace DM.Modules.Tasks.Core.Aggregates
         public void Restore()
         {
             if (!IsDeleted)
-                throw new InvalidOperationException();
+                throw new NotDeletedTaskRestoreException();
 
             IsDeleted = false;
             DeletedAt = null;

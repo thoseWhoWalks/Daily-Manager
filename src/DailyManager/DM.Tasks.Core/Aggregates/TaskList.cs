@@ -1,9 +1,10 @@
-﻿using DM.Shared.Core.Aggregates;
+﻿using DM.Modules.Tasks.Core.Exceptions.TaskLists;
+using DM.Shared.Core.Aggregates;
 using DM.Shared.Core.Entities;
 
 namespace DM.Modules.Tasks.Core.Aggregates
 {
-    public class TaskList : 
+    public class TaskList :
         IEntity,
         IAggregateRoot,
         IDeletableAggreagateRoot
@@ -35,35 +36,36 @@ namespace DM.Modules.Tasks.Core.Aggregates
 
         }
 
-        public TaskList(Guid authorId, string title)
+        internal TaskList(Guid authorId, string title)
         {
             if (authorId == default)
-                throw new ArgumentException(nameof(authorId));
+                throw new CreateTaskListWithoutAuthorException();
             AuthorId = authorId;
 
-            Title = title ?? throw new ArgumentNullException(nameof(title));
+            Title = title ?? throw new CreateTaskListWithoutTitleException();
         }
 
-        public TaskList(Guid authorId, string title, string description) 
+        internal TaskList(Guid authorId, string title, string description)
             : this(authorId, title)
         {
             Description = description;
         }
 
-        public TaskList(Guid authorId, string title, string description, IEnumerable<Task> tasks) 
+        internal TaskList(Guid authorId, string title, string description, IEnumerable<Task> tasks)
             : this(authorId, title, description)
         {
             Description = description;
-            if (tasks is null || !tasks.Any()) throw new ArgumentException(nameof(tasks));
+            if (tasks is null || !tasks.Any())
+                throw new CreateTaskListWithPredefinedTasksWithoutAnyTaskException();
+
+            _tasks.AddRange(tasks);
         }
         #endregion
 
         #region Invariants
         public void Rename(string title)
         {
-            ArgumentNullException.ThrowIfNull(title);
-
-            Title = title;
+            Title = title ?? throw new RenameTaskListToEmptyTitleException();
         }
 
         public void ChangeDescription(string description)
@@ -73,7 +75,8 @@ namespace DM.Modules.Tasks.Core.Aggregates
 
         public void AddTask(Task task)
         {
-            ArgumentNullException.ThrowIfNull(task);
+            if (task is null)
+                throw new AddNullTaskToTaskListException();
 
             _tasks.Add(task);
         }
@@ -81,7 +84,7 @@ namespace DM.Modules.Tasks.Core.Aggregates
         public void RemoveTask(Guid taskId)
         {
             if (taskId == default)
-                throw new ArgumentOutOfRangeException(nameof(taskId));
+                throw new RemoveTaskFromTaskListByInvalidIdException();
 
             var task = _tasks.Single(t => t.Id == taskId);
             _tasks.Remove(task);
@@ -89,7 +92,8 @@ namespace DM.Modules.Tasks.Core.Aggregates
 
         public void Delete()
         {
-            if (_tasks.Any()) throw new InvalidOperationException();
+            if (_tasks.Any(t => !t.IsDeleted))
+                throw new DeleteTaskListWithTasksException();
 
             IsDeleted = true;
             DeletedAt = DateTime.UtcNow;
