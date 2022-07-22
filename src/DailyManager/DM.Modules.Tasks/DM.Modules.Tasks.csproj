@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DM.Modules.Tasks.Application\DM.Modules.Tasks.Application.csproj" />
+    <ProjectReference Include="..\DM.Tasks.Infrastructure\DM.Modules.Tasks.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

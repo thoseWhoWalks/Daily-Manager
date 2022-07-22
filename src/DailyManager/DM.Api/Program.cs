@@ -1,4 +1,5 @@
 using DM.Module.Users.Extensions;
+using DM.Modules.Tasks.Extensions;
 using DM.Shared.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSharedInfrastructure(builder.Configuration);
 builder.Services.AddUsersModule(builder.Configuration);
+builder.Services.AddTasksModule(builder.Configuration);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
