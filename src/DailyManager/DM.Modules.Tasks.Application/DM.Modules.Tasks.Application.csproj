@@ -7,19 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.3.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DM.Modules.Tasks.Application.Abstractions\DM.Modules.Tasks.Shared.csproj" />
+    <ProjectReference Include="..\DM.Modules.Tasks.Shared\DM.Modules.Tasks.Shared.csproj" />
     <ProjectReference Include="..\DM.Shared.Application\DM.Shared.Application.csproj" />
     <ProjectReference Include="..\DM.Shared.Infrastructure\DM.Shared.Infrastructure.csproj" />
     <ProjectReference Include="..\DM.Tasks.Core\DM.Modules.Tasks.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Handlers\" />
     <Folder Include="Queries\Handlers\" />
+    <Folder Include="Specifications\Tasks\" />
   </ItemGroup>
 
 </Project>
