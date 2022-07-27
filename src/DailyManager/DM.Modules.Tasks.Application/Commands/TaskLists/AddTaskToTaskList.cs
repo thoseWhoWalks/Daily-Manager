@@ -1,4 +1,4 @@
-﻿using DM.Modules.Tasks.Application.Models.Tasks;
+﻿using DM.Modules.Tasks.Application.Shared.Models.Tasks;
 using DM.Shared.Application.Commands;
 
 namespace DM.Modules.Tasks.Application.Commands.TaskLists

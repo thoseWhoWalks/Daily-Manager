@@ -59,7 +59,7 @@ namespace DM.Modules.Tasks.Core.Aggregates
             Title = title ?? throw new RenameTaskToEmptyTitleException();
         }
 
-        public void ChangeDescription(string description)
+        public void ChangeDescription(string? description)
         {
             if (IsDeleted)
                 throw new TaskDeletedException(Title);
