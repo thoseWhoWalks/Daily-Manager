@@ -31,15 +31,11 @@ namespace DM.Modules.Tasks.Core.Aggregates
 
         }
 
-        internal Task(Guid authorId,  Guid listId, string title, string? description, DateTime? executeAt)
+        internal Task(Guid authorId, string title, string? description, DateTime? executeAt)
         {
             if (authorId == default)
                 throw new CreateTaskWithoutAuthorException();
             AuthorId = authorId;
-
-            if (listId == default)
-                throw new CreateTaskOutOfListContextException();
-            ListId = listId;
 
             if (executeAt.HasValue && executeAt <= DateTime.UtcNow)
                 throw new CreateTaskWithOverdueExecutionDateException();
@@ -47,6 +43,14 @@ namespace DM.Modules.Tasks.Core.Aggregates
 
             Title = title ?? throw new CreateTaskWithoutTitleException();
             Description = description;
+        }
+
+        internal Task(Guid authorId, Guid listId, string title, string? description, DateTime? executeAt)
+            : this(authorId, title, description, executeAt)
+        {
+            if (listId == default)
+                throw new CreateTaskOutOfListContextException();
+            ListId = listId;
         }
         #endregion
 
