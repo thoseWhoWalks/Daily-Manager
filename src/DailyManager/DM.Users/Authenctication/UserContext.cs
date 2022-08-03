@@ -1,4 +1,5 @@
 ﻿using DM.Module.Users.Models;
+using DM.Shared.Infrastructure.Authentication;
 
 namespace DM.Module.Users.Authenctication
 {

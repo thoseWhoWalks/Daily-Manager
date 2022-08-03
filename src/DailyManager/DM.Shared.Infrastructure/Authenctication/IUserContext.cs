@@ -1,4 +1,4 @@
-﻿namespace DM.Module.Users.Authenctication
+﻿namespace DM.Shared.Infrastructure.Authentication
 {
     public interface IUserContext
     {
