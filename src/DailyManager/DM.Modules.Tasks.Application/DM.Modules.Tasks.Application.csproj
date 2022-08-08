@@ -20,9 +20,4 @@
     <ProjectReference Include="..\DM.Tasks.Core\DM.Modules.Tasks.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Queries\Handlers\" />
-    <Folder Include="Specifications\Tasks\" />
-  </ItemGroup>
-
 </Project>

@@ -4,13 +4,9 @@ using EntityFrameworkCore.CommonTools;
 
 namespace DM.Modules.Tasks.Application.Specifications
 {
-    internal class ByIdSpecification<TAggregate> 
-        : Specification<TAggregate>
+    internal class ByIdSpecification<TAggregate> : Specification<TAggregate>
         where TAggregate : class, IEntity, IAggregateRoot
     {
-        public ByIdSpecification(Guid id) : base(ag => ag.Id == id)
-        {
-
-        }
+        public ByIdSpecification(Guid id) : base(ag => ag.Id == id) { }
     }
 }
