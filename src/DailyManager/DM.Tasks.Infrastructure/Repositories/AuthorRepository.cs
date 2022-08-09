@@ -9,7 +9,7 @@ namespace DM.Modules.Tasks.Infrastructure.Repositories
         CrudRepository<Author>,
         IAuthorRepository
     {
-        internal AuthorRepository(TaskDbContext dbContext) : base(dbContext)
+        public AuthorRepository(TaskDbContext dbContext) : base(dbContext)
         {
         }
     }

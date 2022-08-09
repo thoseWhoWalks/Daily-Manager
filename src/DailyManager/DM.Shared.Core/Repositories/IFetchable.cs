@@ -7,7 +7,7 @@ namespace DM.Shared.Core.Repositories
     public interface IFetchable<TEntity> 
         where TEntity : class, IEntity, IAggregateRoot
     {
-        IEnumerable<TEntity> GetAll();
-        IEnumerable<TEntity> GetAll(ISpecification<TEntity> criteria);
+        IQueryable<TEntity> GetAll();
+        IQueryable<TEntity> GetAll(ISpecification<TEntity> criteria);
     }
 }

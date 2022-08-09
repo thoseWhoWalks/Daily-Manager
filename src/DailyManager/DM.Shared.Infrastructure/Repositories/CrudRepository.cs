@@ -72,13 +72,13 @@ namespace DM.Shared.Infrastructure.Repositories
             return entry;
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
             return _dbContext.Set<TEntity>()
                 .AsNoTracking();
         }
 
-        public IEnumerable<TEntity> GetAll(ISpecification<TEntity> criteria)
+        public IQueryable<TEntity> GetAll(ISpecification<TEntity> criteria)
         {
            return _dbContext.Set<TEntity>()
                 .Where(criteria.ToExpression())

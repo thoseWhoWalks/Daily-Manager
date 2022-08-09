@@ -9,7 +9,7 @@ namespace DM.Modules.Tasks.Infrastructure.Repositories
         CrudRepository<TaskList>,
         ITaskListRepository
     {
-        internal TaskListRepository(TaskDbContext dbContext) : base(dbContext)
+        public TaskListRepository(TaskDbContext dbContext) : base(dbContext)
         {
         }
     }
