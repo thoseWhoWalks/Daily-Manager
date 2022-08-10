@@ -3,6 +3,6 @@
     public class TaskListListItemModel
     {
         public string Title { get; set; } = null!;
-        public int ActiveTaskCount { get; set; }
+        public int OpenedTaskCount { get; set; }
     }
 }

@@ -11,8 +11,8 @@ namespace DM.Modules.Tasks.Core.Aggregates
         IDeletableAggreagateRoot
     {
         public Guid Id { get; } = Guid.NewGuid();
-        public Guid ListId { get; }
         public Guid AuthorId { get; }
+        public Guid? ListId { get; }
 
         public string Title { get; private set; } = null!;
         public string? Description { get; private set; }

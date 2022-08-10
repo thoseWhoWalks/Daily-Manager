@@ -1,4 +1,5 @@
-﻿using DM.Modules.Tasks.Core.Exceptions.TaskLists;
+﻿using DM.Modules.Tasks.Core.Const;
+using DM.Modules.Tasks.Core.Exceptions.TaskLists;
 using DM.Shared.Core.Aggregates;
 using DM.Shared.Core.Entities;
 
@@ -30,6 +31,13 @@ namespace DM.Modules.Tasks.Core.Aggregates
             .Where(t => !t.IsDeleted);
         #endregion
 
+        #region Calculated properties
+
+        public int OpenedTaskCount => _tasks
+            .Count(t => t.State != TaskStates.Executed);
+
+        #endregion
+
         #region Constructors
         private TaskList()
         {
@@ -45,13 +53,13 @@ namespace DM.Modules.Tasks.Core.Aggregates
             Title = title ?? throw new CreateTaskListWithoutTitleException();
         }
 
-        internal TaskList(Guid authorId, string title, string description)
+        internal TaskList(Guid authorId, string title, string? description)
             : this(authorId, title)
         {
             Description = description;
         }
 
-        internal TaskList(Guid authorId, string title, string description, IEnumerable<Task> tasks)
+        internal TaskList(Guid authorId, string title, string? description, IEnumerable<Task> tasks)
             : this(authorId, title, description)
         {
             Description = description;
