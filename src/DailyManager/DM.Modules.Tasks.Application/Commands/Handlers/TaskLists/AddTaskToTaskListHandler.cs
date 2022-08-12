@@ -1,4 +1,5 @@
 ﻿using DM.Modules.Tasks.Application.Commands.TaskLists;
+using DM.Modules.Tasks.Application.Exceptions.TaskLists;
 using DM.Modules.Tasks.Application.Specifications;
 using DM.Modules.Tasks.Core.Aggregates;
 using DM.Modules.Tasks.Core.Factories.Tasks;
@@ -33,7 +34,7 @@ namespace DM.Modules.Tasks.Application.Commands.Handlers.TaskLists
         {
             var taskList = _taskListRepository.First(new ByIdSpecification<TaskList>(command.id));
             if (taskList is null)
-                throw new InvalidOperationException();
+                throw new TaskListNotFoundException();
 
             var task = _taskFactory.Create(_userContext.UserId, command.task.Title, 
                 command.task.Description, command.task.ExecuteAt);
@@ -46,7 +47,7 @@ namespace DM.Modules.Tasks.Application.Commands.Handlers.TaskLists
         {
             var taskList = await _taskListRepository.FirstAsync(new ByIdSpecification<TaskList>(command.id));
             if (taskList is null)
-                throw new InvalidOperationException();
+                throw new TaskListNotFoundException();
 
             var task = _taskFactory.Create(_userContext.UserId, command.task.Title,
                 command.task.Description, command.task.ExecuteAt);

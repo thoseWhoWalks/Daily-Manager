@@ -1,4 +1,5 @@
 ﻿using DM.Modules.Tasks.Application.Commands.Tasks;
+using DM.Modules.Tasks.Application.Exceptions.Tasks;
 using DM.Modules.Tasks.Application.Specifications;
 using DM.Modules.Tasks.Core.Repositories;
 using DM.Shared.Application.Commands;
@@ -23,7 +24,7 @@ namespace DM.Modules.Tasks.Application.Commands.Handlers.Tasks
         {
             var task = _taskRepository.First(new ByIdSpecification<Task>(command.id));
             if (task is null)
-                throw new InvalidOperationException();
+                throw new TaskNotFoundException();
 
             task.ChangeExecutionDate(command.executionDate);
             _taskRepository.Update(task);
@@ -33,7 +34,7 @@ namespace DM.Modules.Tasks.Application.Commands.Handlers.Tasks
         {
             var task = await _taskRepository.FirstAsync(new ByIdSpecification<Task>(command.id));
             if (task is null)
-                throw new InvalidOperationException();
+                throw new TaskNotFoundException();
 
             task.ChangeExecutionDate(command.executionDate);
             await _taskRepository.UpdateAsync(task);
