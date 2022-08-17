@@ -2,5 +2,5 @@
 
 namespace DM.Modules.Tasks.Application.Commands.TaskLists
 {
-    internal record CreateTaskList(string title, string? description) : ICommand;
+    public record CreateTaskList(string title, string? description) : ICommand;
 }

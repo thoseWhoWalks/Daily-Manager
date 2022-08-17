@@ -2,5 +2,5 @@
 
 namespace DM.Modules.Tasks.Application.Commands.TaskLists
 {
-    internal record DeleteTaskList(Guid id) : ICommand;
+    public record DeleteTaskList(Guid id) : ICommand;
 }

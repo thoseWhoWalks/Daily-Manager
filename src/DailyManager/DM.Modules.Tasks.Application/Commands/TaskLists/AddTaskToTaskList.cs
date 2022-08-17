@@ -3,5 +3,5 @@ using DM.Shared.Application.Commands;
 
 namespace DM.Modules.Tasks.Application.Commands.TaskLists
 {
-    internal record AddTaskToTaskList(Guid id, TaskToCreateModel task) : ICommand;
+    public record AddTaskToTaskList(Guid id, TaskToCreateModel task) : ICommand;
 }
