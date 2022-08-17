@@ -2,5 +2,5 @@
 
 namespace DM.Modules.Tasks.Application.Commands.Tasks
 {
-    internal record ExecuteTask(Guid id) : ICommand;
+    public record ExecuteTask(Guid id) : ICommand;
 }

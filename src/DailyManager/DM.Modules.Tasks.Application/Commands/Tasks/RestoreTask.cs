@@ -2,5 +2,5 @@
 
 namespace DM.Modules.Tasks.Application.Commands.Tasks
 {
-    internal record RestoreTask(Guid id) : ICommand;
+    public record RestoreTask(Guid id) : ICommand;
 }

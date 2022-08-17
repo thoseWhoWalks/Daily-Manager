@@ -2,5 +2,5 @@
 
 namespace DM.Modules.Tasks.Application.Commands.Tasks
 {
-    internal record ChangeTaskDescription(Guid id, string? description) : ICommand;
+    public record ChangeTaskDescription(Guid id, string? description) : ICommand;
 }
