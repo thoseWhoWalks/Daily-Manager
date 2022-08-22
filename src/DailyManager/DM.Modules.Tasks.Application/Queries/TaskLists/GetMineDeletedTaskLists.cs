@@ -3,8 +3,5 @@ using DM.Shared.Application.Queries;
 
 namespace DM.Modules.Tasks.Application.Queries.TaskLists
 {
-    public class GetDeletedTaskLists : IQuery<IEnumerable<TaskListListItemModel>>
-    {
-        public Guid AuthorId { get; set; }
-    }
+    public class GetMineDeletedTaskLists : IQuery<IEnumerable<TaskListListItemModel>> {}
 }

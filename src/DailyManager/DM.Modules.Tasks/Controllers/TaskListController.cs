@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DM.Modules.Tasks.Controllers
 {
-    [Route("api/tasks")]
+    [Route("api/task-lists")]
     internal class TaskListController : Controller
     {
         #region Dependencies

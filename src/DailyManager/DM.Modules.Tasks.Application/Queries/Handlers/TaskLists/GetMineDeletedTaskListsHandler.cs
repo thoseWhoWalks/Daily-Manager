@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DM.Modules.Tasks.Application.Queries.Handlers.TaskLists
 {
-    internal class GetDeletedTaskListsHandler 
-        : IQueryHandler<GetDeletedTaskLists, IEnumerable<TaskListListItemModel>>
+    internal class GetMineDeletedTaskListsHandler 
+        : IQueryHandler<GetMineDeletedTaskLists, IEnumerable<TaskListListItemModel>>
     {
         #region Dependencies
 
@@ -21,7 +21,7 @@ namespace DM.Modules.Tasks.Application.Queries.Handlers.TaskLists
 
         #endregion
 
-        public GetDeletedTaskListsHandler(
+        public GetMineDeletedTaskListsHandler(
             ITaskListRepository taskRepository,
             IUserContext userContext
             )
@@ -30,7 +30,7 @@ namespace DM.Modules.Tasks.Application.Queries.Handlers.TaskLists
             _userContext = userContext;
         }
 
-        public IEnumerable<TaskListListItemModel>? Handle(GetDeletedTaskLists query)
+        public IEnumerable<TaskListListItemModel>? Handle(GetMineDeletedTaskLists query)
         {
             var taskLists = _taskListRepository
                 .GetAll(new TaskListByAuthorIdSpecification(_userContext.UserId)
@@ -40,7 +40,7 @@ namespace DM.Modules.Tasks.Application.Queries.Handlers.TaskLists
             return taskLists.Adapt<IEnumerable<TaskListListItemModel>>();
         }
 
-        public async Task<IEnumerable<TaskListListItemModel>?> HandleAsync(GetDeletedTaskLists query)
+        public async Task<IEnumerable<TaskListListItemModel>?> HandleAsync(GetMineDeletedTaskLists query)
         {
             var taskLists = await _taskListRepository
                 .GetAll(new TaskListByAuthorIdSpecification(_userContext.UserId)
