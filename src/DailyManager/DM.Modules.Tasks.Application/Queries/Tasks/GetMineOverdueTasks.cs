@@ -3,8 +3,5 @@ using DM.Shared.Application.Queries;
 
 namespace DM.Modules.Tasks.Application.Queries.Tasks
 {
-    public class GetUnlistedTasks : IQuery<IEnumerable<TaskModel>>
-    {
-        public Guid AuthorId { get; set; }
-    }
+    public class GetMineOverdueTasks : IQuery<IEnumerable<TaskModel>> { }
 }
