@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DM.Modules.Tasks.Core\DM.Modules.Tasks.Core.csproj" />
     <ProjectReference Include="..\DM.Tasks.Core\DM.Modules.Tasks.Core.csproj" />
   </ItemGroup>
 

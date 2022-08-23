@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DM.Modules.Tasks\DM.Modules.Tasks.csproj" />
+    <ProjectReference Include="..\DM.Modules.Users\DM.Modules.Users.csproj" />
     <ProjectReference Include="..\DM.Shared.Infrastructure\DM.Shared.Infrastructure.csproj" />
     <ProjectReference Include="..\DM.Users\DM.Modules.Users.csproj" />
   </ItemGroup>

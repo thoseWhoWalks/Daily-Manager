@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DM.Modules.Tasks.Core\DM.Modules.Tasks.Core.csproj" />
     <ProjectReference Include="..\DM.Shared.Infrastructure\DM.Shared.Infrastructure.csproj" />
     <ProjectReference Include="..\DM.Tasks.Core\DM.Modules.Tasks.Core.csproj" />
   </ItemGroup>
