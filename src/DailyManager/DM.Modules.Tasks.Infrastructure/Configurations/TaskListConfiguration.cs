@@ -20,6 +20,9 @@ namespace DM.Modules.Tasks.Infrastructure.Configurations
             builder.HasMany(tl => tl.Tasks)
                 .WithOne()
                 .HasForeignKey(t => t.ListId);
+            builder.HasOne<Author>()
+                .WithMany()
+                .HasForeignKey(tl => tl.AuthorId);
 
             SetDateType(builder.Property(u => u.CreatedAt));
             SetDateType(builder.Property(u => u.DeletedAt));

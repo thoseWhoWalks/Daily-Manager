@@ -13,7 +13,7 @@ namespace DM.Modules.Tasks.Infrastructure.Context
 
         #endregion
 
-        public DbSet<Author> Users { get; set; } = null!;
+        public DbSet<Author> Authors { get; set; } = null!;
         public DbSet<Task> Tasks { get; set; } = null!;
         public DbSet<TaskList> TaskLists { get; set; } = null!;
 
