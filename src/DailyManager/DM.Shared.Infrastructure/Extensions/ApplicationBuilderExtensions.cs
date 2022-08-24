@@ -6,12 +6,6 @@ namespace DM.Shared.Infrastructure.Extensions
 {
     public static class ApplicationBuilderExtensions
     {
-        #region Constants
-
-        private const string DmAssemblyPrefix = "DM.Modules.";
-
-        #endregion
-
         public static IApplicationBuilder UseSharedInfrastructure(this IApplicationBuilder builder)
         {
             builder
@@ -25,8 +19,10 @@ namespace DM.Shared.Infrastructure.Extensions
         private static IApplicationBuilder UseDbConsistencyPolicy(this IApplicationBuilder builder)
         {
             var dbContextTypes = AppDomain.CurrentDomain
-                .GetAssemblies().Where(a => !string.IsNullOrEmpty(a.FullName) && a.FullName.Contains(DmAssemblyPrefix))
-                .SelectMany(@as => @as.GetTypes().Where(t => t.IsSubclassOf(typeof(DbContext))));
+                .GetClientAssemblies()
+                .SelectMany(@as => @as
+                        .GetTypes()
+                        .Where(t => t.IsSubclassOf(typeof(DbContext)) && !t.IsAbstract));
 
             using var scope = builder.ApplicationServices.CreateScope();
 

@@ -3,6 +3,7 @@ using DM.Shared.Application.Queries;
 using DM.Shared.Infrastructure.Commands;
 using DM.Shared.Infrastructure.Controllers;
 using DM.Shared.Infrastructure.Queries;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +14,7 @@ namespace DM.Shared.Infrastructure.Extensions
         public static IServiceCollection AddSharedInfrastructure(this IServiceCollection services, IConfiguration config)
         {
             services
+                .AddMediatR(AppDomain.CurrentDomain.GetClientAssemblies())
                 .AddQueries()
                 .AddCommands()
                 .AddInternalControllerFeatureProvider(config);
@@ -24,9 +26,9 @@ namespace DM.Shared.Infrastructure.Extensions
 
         private static IServiceCollection AddQueries(this IServiceCollection services)
         {
-            services.AddSingleton<IQueryDispatcher, QueryDispatcher>();
-            services.Scan(s => s.FromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
-                .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<>)))
+            services.AddScoped<IQueryDispatcher, QueryDispatcher>();
+            services.Scan(s => s.FromAssemblies(AppDomain.CurrentDomain.GetClientAssemblies())
+                .AddClasses(c => c.AssignableTo(typeof(IQueryHandler<,>)))
                 .AsImplementedInterfaces()
                 .WithScopedLifetime());
 
@@ -35,8 +37,9 @@ namespace DM.Shared.Infrastructure.Extensions
 
         private static IServiceCollection AddCommands(this IServiceCollection services)
         {
-            services.AddSingleton<ICommandDispatcher, CommandDispatcher>();
-            services.Scan(s => s.FromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
+            
+            services.AddScoped<ICommandDispatcher, CommandDispatcher>();
+            services.Scan(s => s.FromAssemblies(AppDomain.CurrentDomain.GetClientAssemblies())
                 .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<>)))
                 .AsImplementedInterfaces()
                 .WithScopedLifetime());
