@@ -37,8 +37,8 @@ namespace DM.Modules.Tasks.Infrastructure.Extensions
         private static IServiceCollection AddRepositories(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IAuthorRepository, AuthorRepository>();
-            services.AddScoped<IAuthorRepository, AuthorRepository>();
-            services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddScoped<ITaskListRepository, TaskListRepository>();
+            services.AddScoped<ITaskRepository, TaskRepository>();
 
             return services;
         }

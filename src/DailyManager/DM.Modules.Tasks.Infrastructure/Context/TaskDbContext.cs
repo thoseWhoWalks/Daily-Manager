@@ -17,9 +17,6 @@ namespace DM.Modules.Tasks.Infrastructure.Context
         public DbSet<Task> Tasks { get; set; } = null!;
         public DbSet<TaskList> TaskLists { get; set; } = null!;
 
-        public TaskDbContext(DbContextOptions<TaskDbContext> options) : base(Schema, options)
-        {
-            Database.EnsureCreated();
-        }
+        public TaskDbContext(DbContextOptions<TaskDbContext> options) : base(Schema, options) {}
     }
 }
