@@ -1,6 +1,8 @@
-﻿namespace DM.Shared.Application.Queries
+﻿using MediatR;
+
+namespace DM.Shared.Application.Queries
 {
-    public interface IQuery<TResult>
+    public interface IQuery<TResult> : IRequest<TResult>
     {
     }
 }

@@ -18,13 +18,13 @@ namespace DM.Shared.Infrastructure.Commands
 
         void ICommandDispatcher.Send<TCommand>(TCommand command)
         {
-            _mediator.Publish(command).GetAwaiter().GetResult();
+            _mediator.Send(command).GetAwaiter().GetResult();
         }
 
         async Task ICommandDispatcher.SendAsync<TCommand>(TCommand command, 
             CancellationToken cancellationToken)
         {
-            await _mediator.Publish(command, cancellationToken);
-        }
+            await _mediator.Send(command, cancellationToken);
+       } 
     }
 }

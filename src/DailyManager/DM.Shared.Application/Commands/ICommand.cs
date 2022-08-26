@@ -1,6 +1,8 @@
-﻿namespace DM.Shared.Application.Commands
+﻿using MediatR;
+
+namespace DM.Shared.Application.Commands
 {
-    public interface ICommand
+    public interface ICommand : IRequest
     {
     }
 }

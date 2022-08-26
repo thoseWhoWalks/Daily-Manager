@@ -51,7 +51,7 @@ namespace DM.Module.Users.Extensions
         {
             services.AddScoped<IUserContext>(provider => {
                 // TODO: User IAuthenticator.
-                AuthUserModel auth = new AuthUserModel(Guid.Empty);
+                AuthUserModel auth = new AuthUserModel(Guid.Parse("17CD365B-4E84-4177-985C-21579ED031FC"));
 
                 return new UserContext(auth);
             });
