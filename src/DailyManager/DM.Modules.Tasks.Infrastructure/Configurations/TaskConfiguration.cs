@@ -1,4 +1,5 @@
-﻿using DM.Shared.Infrastructure.Configurations;
+﻿using DM.Modules.Tasks.Core.Aggregates;
+using DM.Shared.Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Task = DM.Modules.Tasks.Core.Aggregates.Task;
 
@@ -16,6 +17,10 @@ namespace DM.Modules.Tasks.Infrastructure.Configurations
             builder.Property(u => u.Description)
                 .HasMaxLength(DescriptionMaxLength)
                 .IsRequired();
+
+            builder.HasOne<Author>()
+                .WithMany()
+                .HasForeignKey(tl => tl.AuthorId);
 
             SetDateType(builder.Property(u => u.CreatedAt));
             SetDateType(builder.Property(u => u.DeletedAt));
