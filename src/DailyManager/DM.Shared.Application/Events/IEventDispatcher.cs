@@ -1,4 +1,6 @@
-﻿namespace DM.Shared.Application.Events
+﻿using DM.Shared.Core.Events;
+
+namespace DM.Shared.Application.Events
 {
     public interface IEventDispatcher
     {

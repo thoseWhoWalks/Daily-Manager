@@ -5,7 +5,7 @@ using EntityFrameworkCore.CommonTools;
 namespace DM.Shared.Core.Repositories
 {
     public interface IFetchable<TEntity> 
-        where TEntity : class, IEntity, IAggregateRoot
+        where TEntity : AggregateRoot, IEntity
     {
         IQueryable<TEntity> GetAll();
         IQueryable<TEntity> GetAll(ISpecification<TEntity> criteria);

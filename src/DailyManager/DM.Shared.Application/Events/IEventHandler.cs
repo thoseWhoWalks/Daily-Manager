@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using DM.Shared.Core.Events;
+using MediatR;
 
 namespace DM.Shared.Application.Events
 {

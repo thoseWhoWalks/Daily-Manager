@@ -5,8 +5,8 @@ using DM.Shared.Core.Entities;
 namespace DM.Modules.Tasks.Core.Aggregates
 {
     public class Author :
+        AggregateRoot,
         IEntity,
-        IAggregateRoot,
         IDeletableAggreagateRoot
     {
         public Guid Id { get; private set; }

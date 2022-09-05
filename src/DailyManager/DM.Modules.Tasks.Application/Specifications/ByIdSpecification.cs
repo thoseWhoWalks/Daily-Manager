@@ -5,7 +5,7 @@ using EntityFrameworkCore.CommonTools;
 namespace DM.Modules.Tasks.Application.Specifications
 {
     internal class ByIdSpecification<TAggregate> : Specification<TAggregate>
-        where TAggregate : class, IEntity, IAggregateRoot
+        where TAggregate : AggregateRoot, IEntity
     {
         public ByIdSpecification(Guid id) : base(ag => ag.Id == id) { }
     }

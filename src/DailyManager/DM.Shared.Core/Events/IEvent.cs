@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace DM.Shared.Application.Events
+namespace DM.Shared.Core.Events
 {
     public interface IEvent : INotification
     {

@@ -6,8 +6,8 @@ using DM.Shared.Core.Entities;
 namespace DM.Modules.Tasks.Core.Aggregates
 {
     public class TaskList :
+        AggregateRoot,
         IEntity,
-        IAggregateRoot,
         IDeletableAggreagateRoot
     {
         public Guid Id { get; } = Guid.NewGuid();

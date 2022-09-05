@@ -4,7 +4,7 @@ using DM.Shared.Core.Entities;
 namespace DM.Shared.Core.Repositories
 {
     public interface IDeleteable<TEntity> 
-        where TEntity : class, IEntity, IAggregateRoot
+        where TEntity : AggregateRoot, IEntity
     {
         TEntity Update(TEntity entity);
         Task<TEntity> UpdateAsync(TEntity entity);
