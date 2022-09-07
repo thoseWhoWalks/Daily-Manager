@@ -2,6 +2,7 @@
 using DM.Module.Users.Context;
 using DM.Module.Users.Models;
 using DM.Module.Users.Services;
+using DM.Modules.Users.Events;
 using DM.Shared.Application.Mapping;
 using DM.Shared.Infrastructure.Authentication;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ namespace DM.Module.Users.Extensions
                 .AddDatabase(configuration)
                 .AddServises(configuration)
                 .AddUserContext(configuration)
+                .AddEvents(configuration)
                 .AddMappings(configuration);
 
             return services;
@@ -55,6 +57,13 @@ namespace DM.Module.Users.Extensions
 
                 return new UserContext(auth);
             });
+
+            return services;
+        }
+
+        public static IServiceCollection AddEvents(this IServiceCollection services, IConfiguration config)
+        {
+            services.AddScoped<IUserEventDispatcher, UserEventDispatcher>();
 
             return services;
         }
