@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -17,7 +17,6 @@
     <ProjectReference Include="..\DM.Modules.Tasks\DM.Modules.Tasks.csproj" />
     <ProjectReference Include="..\DM.Modules.Users\DM.Modules.Users.csproj" />
     <ProjectReference Include="..\DM.Shared.Infrastructure\DM.Shared.Infrastructure.csproj" />
-    <ProjectReference Include="..\DM.Users\DM.Modules.Users.csproj" />
   </ItemGroup>
 
 </Project>

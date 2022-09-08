@@ -7,13 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DM.Modules.Tasks.Core\DM.Modules.Tasks.Core.csproj" />
     <ProjectReference Include="..\DM.Shared.Infrastructure\DM.Shared.Infrastructure.csproj" />
-    <ProjectReference Include="..\DM.Tasks.Core\DM.Modules.Tasks.Core.csproj" />
+    <ProjectReference Include="..\DM.Modules.Tasks.Core\DM.Modules.Tasks.Core.csproj" />
   </ItemGroup>
 
 </Project>

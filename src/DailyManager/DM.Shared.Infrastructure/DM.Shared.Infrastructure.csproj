@@ -12,15 +12,13 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="6.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.6" />
     <PackageReference Include="Scrutor" Version="4.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DM.Shared.Application\DM.Shared.Application.csproj" />
     <ProjectReference Include="..\DM.Shared.Core\DM.Shared.Core.csproj" />
+    <ProjectReference Include="..\DM.Shared.OutBox\DM.Shared.OutBox.csproj" />
   </ItemGroup>
 
 </Project>

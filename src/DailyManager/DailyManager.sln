@@ -39,7 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Shared.Application", "DM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Modules.Tasks.Shared", "DM.Modules.Tasks.Shared\DM.Modules.Tasks.Shared.csproj", "{DB515B5E-097D-4F13-BDD1-B86D449B7EF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Shared.OutBox", "DM.Shared.OutBox\DM.Shared.OutBox.csproj", "{2854D987-0359-4C01-A226-F1313C88EDE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Shared.OutBox", "DM.Shared.OutBox\DM.Shared.OutBox.csproj", "{2854D987-0359-4C01-A226-F1313C88EDE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Modules.Users.Shared", "DM.Modules.Users.Shared\DM.Modules.Users.Shared.csproj", "{01368669-0383-43FA-9D1D-71E501AA2144}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +105,10 @@ Global
 		{2854D987-0359-4C01-A226-F1313C88EDE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2854D987-0359-4C01-A226-F1313C88EDE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2854D987-0359-4C01-A226-F1313C88EDE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01368669-0383-43FA-9D1D-71E501AA2144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01368669-0383-43FA-9D1D-71E501AA2144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01368669-0383-43FA-9D1D-71E501AA2144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01368669-0383-43FA-9D1D-71E501AA2144}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,6 +130,7 @@ Global
 		{2649665A-FCAC-4A36-86AC-7F4B3D893D4A} = {05798383-44DC-4673-883B-94B3A7BAB792}
 		{DB515B5E-097D-4F13-BDD1-B86D449B7EF3} = {D498BDE2-3C42-45BE-8AB4-7D31FC213117}
 		{2854D987-0359-4C01-A226-F1313C88EDE4} = {05798383-44DC-4673-883B-94B3A7BAB792}
+		{01368669-0383-43FA-9D1D-71E501AA2144} = {EEDB0579-CC02-443E-A9FB-BEBCA09EC8D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B2260553-7FEB-450C-A075-EA5B978040E4}
