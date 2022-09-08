@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DM.Shared.OutBox.Context
 {
-    public abstract class OutBoxDbContext : DbContext
+    public abstract class OutBoxDbContext<TContext> : DbContext where TContext : DbContext
     {
         public DbSet<OutBoxMessage> OutBoxMessages { get; set; } = null!;
 
-        public OutBoxDbContext(DbContextOptions<OutBoxDbContext> options) : base(options) {}
+        public OutBoxDbContext(DbContextOptions<TContext> options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-            => modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+            => modelBuilder.ApplyConfigurationsFromAssembly(typeof(OutBoxDbContext<>).Assembly);
     }
 }

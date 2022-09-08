@@ -8,11 +8,15 @@ namespace DM.Shared.OutBox.Entities
     {
         public Guid Id { get; } = Guid.NewGuid();
 
-        public string Message { get; }
-        public string Type { get; }
+        public string Message { get; } = null!;
+        public string Type { get; } = null!;
 
         public DateTime CreatedAt { get; } = DateTime.UtcNow;
         public DateTime? ExecutedAt { get; set; }
+
+        private OutBoxMessage()
+        {
+        }
 
         public OutBoxMessage(IEvent @event)
         {
