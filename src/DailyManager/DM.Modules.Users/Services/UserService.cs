@@ -1,8 +1,9 @@
 ﻿using DM.Module.Users.Context;
 using DM.Module.Users.Entities;
 using DM.Module.Users.Exceptions;
-using DM.Module.Users.Mapping;
 using DM.Module.Users.Models;
+using DM.Modules.Users.Events;
+using DM.Modules.Users.Shared.Events;
 using DM.Shared.Infrastructure.Helpers;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
@@ -14,12 +15,17 @@ namespace DM.Module.Users.Services
         #region Dependencies
 
         private readonly UserDbContext _dbContext;
+        private readonly IUserEventDispatcher _eventDispatcher;
 
         #endregion
 
-        public UserService(UserDbContext dbContext)
+        public UserService(
+            UserDbContext dbContext,
+            IUserEventDispatcher eventDispatcher
+            )
         {
             _dbContext = dbContext;
+            _eventDispatcher = eventDispatcher;
         }
 
         public UserModel? GetById(UserModel model)
@@ -51,6 +57,7 @@ namespace DM.Module.Users.Services
             user.HashPassword = saltedHash.Hash;
             user.PasswordSalt = saltedHash.Salt;
 
+            _eventDispatcher.Publish(new UserCreated(user.Id, user.Login));
             _dbContext.Add(user);
             _dbContext.SaveChanges();
         }
@@ -66,6 +73,7 @@ namespace DM.Module.Users.Services
             user.HashPassword = saltedHash.Hash;
             user.PasswordSalt = saltedHash.Salt;
 
+            await _eventDispatcher.PublishAsync(new UserCreated(user.Id, user.Login));
             await _dbContext.AddAsync(user);
             await _dbContext.SaveChangesAsync();
         }
@@ -77,8 +85,10 @@ namespace DM.Module.Users.Services
             var user = _dbContext.Users.FirstOrDefault(x => x.Id == model.Id);
             ActionGuardAndThrow(user);
 
-            user.Login = model.Login;
+            user!.Login = model.Login;
             user.UpdatedAt = DateTime.UtcNow;
+
+            _eventDispatcher.Publish(new UserUpdated(user.Id, user.Login));
             _dbContext.SaveChanges();
         }
 
@@ -89,8 +99,10 @@ namespace DM.Module.Users.Services
             var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == model.Id);
             ActionGuardAndThrow(user);
 
-            user.Login = model.Login;
+            user!.Login = model.Login;
             user.UpdatedAt = DateTime.UtcNow;
+
+            await _eventDispatcher.PublishAsync(new UserUpdated(user.Id, user.Login));
             await _dbContext.SaveChangesAsync();
         }
 
@@ -102,7 +114,7 @@ namespace DM.Module.Users.Services
             ActionGuardAndThrow(user);
 
             var saltedHash = CryptoHelper.GenerateSaltedHash(model.Password);
-            user.HashPassword = saltedHash.Hash;
+            user!.HashPassword = saltedHash.Hash;
             user.PasswordSalt = saltedHash.Salt;
 
             _dbContext.SaveChanges();
@@ -116,7 +128,7 @@ namespace DM.Module.Users.Services
             ActionGuardAndThrow(user);
 
             var saltedHash = CryptoHelper.GenerateSaltedHash(model.Password);
-            user.HashPassword = saltedHash.Hash;
+            user!.HashPassword = saltedHash.Hash;
             user.PasswordSalt = saltedHash.Salt;
 
             user.UpdatedAt = DateTime.UtcNow;
@@ -130,8 +142,10 @@ namespace DM.Module.Users.Services
             var user = _dbContext.Users.FirstOrDefault(x => x.Id == id);
             ActionGuardAndThrow(user);
 
-            user.IsDeleted = true;
+            user!.IsDeleted = true;
             user.DeletedAt = DateTime.Now;
+
+            _eventDispatcher.Publish(new UserDeleted(user.Id, user.DeletedAt));
             _dbContext.SaveChanges();
         }
 
