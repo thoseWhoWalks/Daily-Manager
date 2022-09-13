@@ -11,7 +11,7 @@ namespace DM.Shared.Infrastructure.Repositories
         IUpdateable<TEntity>,
         ISearchable<TEntity>,
         IFetchable<TEntity>
-        where TEntity : class, IEntity, IAggregateRoot
+        where TEntity : AggregateRoot, IEntity
     {
         private readonly DbContext _dbContext;
 

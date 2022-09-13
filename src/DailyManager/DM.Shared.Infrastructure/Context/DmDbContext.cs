@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DM.Shared.OutBox.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace DM.Shared.Infrastructure.Context
 {
-    public abstract class DmDbContext<TContext> : DbContext where TContext : DbContext
+    public abstract class DmDbContext<TContext> : OutBoxDbContext<TContext> where TContext : DbContext
     {
         #region Private fields
 
@@ -17,6 +18,7 @@ namespace DM.Shared.Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.HasDefaultSchema(_prefix);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
         }
