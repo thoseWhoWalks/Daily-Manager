@@ -33,6 +33,14 @@ namespace DM.Modules.Tasks.Core.Aggregates
         #endregion
 
         #region Invariants
+        public void ChangeLogin(string login)
+        {
+            if (IsDeleted)
+                throw new AuthorDeletedException(Login);
+
+            Login = login ?? throw new ChangeAuthorLoginToEmptyException();
+        }
+
         public void Delete()
         {
             if (IsDeleted is true)
