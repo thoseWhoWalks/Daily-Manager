@@ -1,4 +1,5 @@
-﻿using DM.Modules.Tasks.Core.Exceptions.Authors;
+﻿using DM.Modules.Tasks.Core.Events.Authors;
+using DM.Modules.Tasks.Core.Exceptions.Authors;
 using DM.Shared.Core.Aggregates;
 using DM.Shared.Core.Entities;
 
@@ -48,6 +49,8 @@ namespace DM.Modules.Tasks.Core.Aggregates
 
             IsDeleted = true;
             DeletedAt = DateTime.UtcNow;
+
+            AddEvent(new AuthorDeleted(Id));
         }
         #endregion
     }

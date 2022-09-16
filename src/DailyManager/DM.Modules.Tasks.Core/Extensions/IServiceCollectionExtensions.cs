@@ -1,4 +1,5 @@
-﻿using DM.Modules.Tasks.Core.Factories.TaskLists;
+﻿using DM.Modules.Tasks.Core.Factories.Authors;
+using DM.Modules.Tasks.Core.Factories.TaskLists;
 using DM.Modules.Tasks.Core.Factories.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,7 @@ namespace DM.Modules.Tasks.Core.Extensions
 
         private static IServiceCollection AddFactories(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<IAuthorFactory, AuthorFactory>();
             services.AddScoped<ITaskFactory, TaskFactory>();
             services.AddScoped<ITaskListFactory, TaskListFactory>();
 
