@@ -5,7 +5,7 @@ using Task = DM.Modules.Tasks.Core.Aggregates.Task;
 
 namespace DM.Modules.Tasks.Infrastructure.Context
 {
-    internal class TaskDbContext : DmDbContext<TaskDbContext>
+    internal class TaskDbContext : DmDbContext
     {
         #region Constants
 

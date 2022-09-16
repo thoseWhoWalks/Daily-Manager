@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DM.Shared.Infrastructure.Context
 {
-    public abstract class DmDbContext<TContext> : OutBoxDbContext<TContext> where TContext : DbContext
+    public abstract class DmDbContext : OutBoxDbContext
     {
         #region Private fields
 
@@ -11,7 +11,7 @@ namespace DM.Shared.Infrastructure.Context
 
         #endregion
 
-        public DmDbContext(string prefix, DbContextOptions<TContext> options) : base(options)
+        protected DmDbContext(string prefix, DbContextOptions options) : base(options)
         {
             _prefix = prefix;
         }

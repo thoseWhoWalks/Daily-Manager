@@ -1,17 +1,16 @@
 ﻿using DM.Shared.Application.Events;
 using DM.Shared.OutBox.Context;
 using DM.Shared.OutBox.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace DM.Shared.Infrastructure.Events
 {
-    public abstract class EventDispatcher<TContext> : IEventDispatcher where TContext : DbContext
+    public abstract class EventDispatcher : IEventDispatcher
     {
         #region Dependecies
-        private readonly OutBoxDbContext<TContext> _dbContext;
+        private readonly OutBoxDbContext _dbContext;
         #endregion
 
-        public EventDispatcher(OutBoxDbContext<TContext> dbContext)
+        public EventDispatcher(OutBoxDbContext dbContext)
         {
             _dbContext = dbContext;
         }

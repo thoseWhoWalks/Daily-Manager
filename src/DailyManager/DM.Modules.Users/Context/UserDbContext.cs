@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DM.Module.Users.Context
 {
-    internal class UserDbContext : DmDbContext<UserDbContext>
+    internal class UserDbContext : DmDbContext
     {
         #region Constants
 
@@ -14,9 +14,6 @@ namespace DM.Module.Users.Context
 
         public DbSet<User> Users { get; set; } = null!;
 
-        public UserDbContext(DbContextOptions<UserDbContext> options) : base(Schema, options)
-        {
-            Database.EnsureCreated();
-        }
+        public UserDbContext(DbContextOptions<UserDbContext> options) : base(Schema, options) { }
     }
 }
