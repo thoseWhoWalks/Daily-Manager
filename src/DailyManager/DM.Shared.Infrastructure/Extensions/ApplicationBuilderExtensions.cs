@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DM.Shared.Infrastructure.Exceptions;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,7 +10,8 @@ namespace DM.Shared.Infrastructure.Extensions
         public static IApplicationBuilder UseSharedInfrastructure(this IApplicationBuilder builder)
         {
             builder
-                .UseDbConsistencyPolicy();
+                .UseDbConsistencyPolicy()
+                .UseGlobalExceptionHandler();
 
             return builder;
         }
@@ -33,6 +35,13 @@ namespace DM.Shared.Infrastructure.Extensions
                 context?.Database.EnsureCreated();
                 context?.Database.Migrate();
             }
+
+            return builder;
+        }
+
+        private static IApplicationBuilder UseGlobalExceptionHandler(this IApplicationBuilder builder)
+        {
+            builder.UseMiddleware<GlobalExceptionHandler>();
 
             return builder;
         }
