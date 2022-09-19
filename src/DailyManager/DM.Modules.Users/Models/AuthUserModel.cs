@@ -1,12 +1,8 @@
 ﻿namespace DM.Module.Users.Models
 {
-    public class AuthUserModel
+    internal class AuthUserModel
     {
-        public Guid Id { get; }
-
-        public AuthUserModel(Guid id)
-        {
-            Id = id;
-        }
+        public UserModel User { get; } = null!;
+        public string Token { get; } = null!;
     }
 }
