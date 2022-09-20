@@ -5,6 +5,7 @@ using DM.Module.Users.Models;
 using DM.Shared.Infrastructure.Helpers;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -36,11 +37,11 @@ namespace DM.Modules.Users.Authenctication
 
         public Authenticator(
             UserDbContext dbContext,
-            JwtOptions jwtOptions
+            IOptions<JwtOptions> jwtOptions
             )
         {
             _dbContext = dbContext;
-            _jwtOptions = jwtOptions;
+            _jwtOptions = jwtOptions.Value;
 
             _jwtTokenSecret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.Secret));
             _jwtTokenValidationParams = new TokenValidationParameters
@@ -59,11 +60,10 @@ namespace DM.Modules.Users.Authenctication
             if (string.IsNullOrEmpty(login)) throw new ArgumentNullException(nameof(login));
             if (string.IsNullOrEmpty(password)) throw new ArgumentNullException(nameof(password));
 
-            var hashedPassword = CryptoHelper.GenerateSaltedHash(password);
-            var dbUser = _dbContext.Users.FirstOrDefault(u => u.Login == login
-                && u.HashPassword == hashedPassword.Hash
-                && u.PasswordSalt == hashedPassword.Salt);
+            var dbUser = _dbContext.Users.FirstOrDefault(u => u.Login == login);
             ActionGuardAndThrow(dbUser);
+            if (!CryptoHelper.IsHashValid(password, dbUser!.HashPassword, dbUser.PasswordSalt))
+                throw new UserNotFoundException();
 
             var claims = BuildClaims(dbUser!);
             return BuildAuthModel(dbUser!, GenerateToken(claims));
@@ -73,13 +73,12 @@ namespace DM.Modules.Users.Authenctication
         {
             if (string.IsNullOrEmpty(login)) throw new ArgumentNullException(nameof(login));
             if (string.IsNullOrEmpty(password)) throw new ArgumentNullException(nameof(password));
-
-            var hashedPassword = CryptoHelper.GenerateSaltedHash(password);
-            var dbUser = await _dbContext.Users.FirstOrDefaultAsync(u => u.Login == login
-                && u.HashPassword == hashedPassword.Hash
-                && u.PasswordSalt == hashedPassword.Salt);
+          
+            var dbUser = await _dbContext.Users.FirstOrDefaultAsync(u => u.Login == login);
             ActionGuardAndThrow(dbUser);
-
+            if (!CryptoHelper.IsHashValid(password, dbUser!.HashPassword, dbUser.PasswordSalt))
+                throw new UserNotFoundException();
+            
             var claims = BuildClaims(dbUser!);
             return BuildAuthModel(dbUser, GenerateToken(claims));
         }
@@ -124,11 +123,10 @@ namespace DM.Modules.Users.Authenctication
         {
             var token = new JwtSecurityToken(
                 _jwtOptions.Issuer,
-                null,
+                _jwtOptions.Issuer,
                 claims,
-                null,
-                DateTime.UtcNow.AddSeconds(_jwtOptions.ExpireIn),
-                new SigningCredentials(_jwtTokenSecret, SecurityAlgorithms.HmacSha256Signature)
+                expires: DateTime.UtcNow.AddMinutes(_jwtOptions.ExpireIn),
+                signingCredentials: new SigningCredentials(_jwtTokenSecret, SecurityAlgorithms.HmacSha256Signature)
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);

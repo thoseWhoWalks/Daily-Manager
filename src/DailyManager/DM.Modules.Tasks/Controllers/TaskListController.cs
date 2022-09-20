@@ -5,11 +5,12 @@ using DM.Modules.Tasks.Shared.Models.TaskLists;
 using DM.Modules.Tasks.Shared.Models.Tasks;
 using DM.Shared.Application.Commands;
 using DM.Shared.Application.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DM.Modules.Tasks.Controllers
 {
-    [Route("api/task-lists")]
+    [Authorize, Route("api/task-lists")]
     internal class TaskListController : Controller
     {
         #region Dependencies

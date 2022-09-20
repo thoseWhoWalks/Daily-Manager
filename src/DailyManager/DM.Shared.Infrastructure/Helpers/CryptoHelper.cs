@@ -28,9 +28,10 @@ namespace DM.Shared.Infrastructure.Helpers
         {
             var hashToCompare = GenerateHash(
                 input,
-                Encoding.ASCII.GetBytes(salt)
+                Convert.FromBase64String(salt)
                 );
 
+            var t = Convert.ToBase64String(hashToCompare);
             return Convert.ToBase64String(hashToCompare) == hash;
         }
 
